@@ -1,72 +1,34 @@
-import React, { Component } from 'react';
-import { Media } from 'reactstrap';
+import React from 'react';
+import { Card, CardImg, CardImgOverlay, CardTitle } from 'reactstrap';
 
-class Menu extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            dishes: [
-                {
-                    id: 0,
-                    name: "Uthappizza",
-                    img: "https://i.ibb.co/2sqf24L/uthappizza.png",
-                    category: "mains",
-                    label: "Hot",
-                    price: "4.99",
-                    description: "A unique combination of Indian Uthappam (pancake) and Italian pizza, topped with Cerignola olives, ripe vine cherry tomatoes, Vidalia onion, Guntur chillies and Buffalo Paneer."
-                }, {
-                    id: 1,
-                    name: "Zucchipakoda",
-                    img: "https://i.ibb.co/r7bzwJv/zucchipakoda.png",
-                    category: "",
-                    price: "1.99",
-                    description: "Deep fried Zucchini coated with mildly spiced Chickpea flour batter accompanied with a sweet-tangy tamarind sauce"
-                }, {
-                    id: 2,
-                    name:'Vadonut',
-                    img: "https://i.ibb.co/mhMsbKB/vadonut.png",
-                    category: 'appetizer',
-                    label:'New',
-                    price:'1.99',
-                    description:'A quintessential ConFusion experience, is it a vada or is it a donut?'
-                }, {
-                    id: 3,
-                    name:'ElaiCheese Cake',
-                    img: "https://i.ibb.co/31ZgQNJ/elaicheesecake.png",
-                    category: 'dessert',
-                    label:'',
-                    price:'2.99',
-                    description:'A delectable, semi-sweet New York Style Cheese Cake, with Graham cracker crust and spiced with Indian cardamoms'
-                }
-            ]
-        };
-    }
-    render() {
-        const menu = this.state.dishes.map((dishes) => {
-            return (
-                <div key={dishes.id} className="col-12 mt-5">
-                    <Media tag="li">
-                        <Media left middle>
-                            <Media object src={dishes.img} alt={dishes.name} />
-                        </Media>
-                        <Media body className="ml-5">
-                            <Media heading>{dishes.name}</Media>
-                            <p>{dishes.description}</p>
-                        </Media>
-                    </Media>
-                </div>
-            );
-        });
-        return(
-            <div className="container">
-                <div className="row">
-                    <Media list>
-                        {menu}
-                    </Media>
-                </div>
-            </div>
-        );
-    }
+function RenderMenuItem ( {dish, onClick} ) {
+  return(
+    <Card onClick={() => onClick(dish.id)}>
+      <CardImg width="100%" src={ dish.image } alt={ dish.name } />
+      <CardImgOverlay>
+        <CardTitle>{ dish.name }</CardTitle>
+      </CardImgOverlay>
+    </Card>
+  );
 }
 
-export default Menu;
+const MenuComponents = (props) => {
+
+  const menu = props.dishes.map((dish) => {
+    return(
+      <div key={ dish.id } className="col-12 col-md-5 md-1">
+        <RenderMenuItem dish={ dish } onClick={props.onClick} />
+      </div>
+    );
+  });
+
+  return(
+    <div className="container">
+      <div className="row">
+        {menu}
+      </div>
+    </div>
+  );
+}
+
+export default MenuComponents;

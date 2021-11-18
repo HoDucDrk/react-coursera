@@ -1,18 +1,15 @@
 import './App.css';
-import { Navbar, NavbarBrand } from 'reactstrap';
-import Menu from './components/menuComponents';
-
+import React from 'react'
+import Main from './components/MainComponents';
+import { BrowserRouter } from 'react-router-dom';
 
 function App() {
-  return (
-    <div className="App">
-      <Navbar dark color="primary">
-        <div className="container">
-          <NavbarBrand href="/">Ristorante Con Fusion</NavbarBrand>
-        </div>
-      </Navbar>
-      <Menu />
-    </div>
+  return(
+    <BrowserRouter>
+      <div className="App">
+        <Main />
+      </div>
+    </BrowserRouter>
   );
 }
 
