@@ -57,6 +57,7 @@ function DishDetail(props) {
         </Breadcrumb>
         <div className="col-12">
           <h3>{props.dish.name}</h3>
+          {console.log("Duc")}
           <hr />
         </div>
       </div>
